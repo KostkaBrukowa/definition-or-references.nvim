@@ -22,6 +22,7 @@ _[GIF version of the showcase video for mobile users](SHOWCASE_GIF_LINK)_
 
 This plugin implements JetBrains like definition and references handling (in JetBrains it's called `declaration or usages`). It combines
 `vim.lsp.buf.definition` and `vim.lsp.buf.references` into single command `require("definition-or-references").definition_or_references`.
+Tested with `tsserver` and `luals`
 
 ## ⚡️ How it works?
 
@@ -143,3 +144,7 @@ PRs and issues are always welcome. Make sure to provide as much context as possi
 ## 🗞 Wiki
 
 You can find guides and showcase of the plugin on [the Wiki](https://github.com/jaroslaw.glegola/definition-or-references.nvim/wiki)
+
+## TODO
+- [] - some tests
+- [] - fix build
