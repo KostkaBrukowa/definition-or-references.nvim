@@ -47,9 +47,9 @@ _[GIF version of the showcase video for mobile users](SHOWCASE_GIF_LINK)_
 
 ```lua
 -- stable version
-use {"definition-or-references.nvim", tag = "*" }
+use {"KostkaBrukowa/definition-or-references.nvim", tag = "*" }
 -- dev version
-use {"definition-or-references.nvim"}
+use {"KostkaBrukowa/definition-or-references.nvim"}
 ```
 
 </td>
@@ -64,9 +64,9 @@ use {"definition-or-references.nvim"}
 
 ```lua
 -- stable version
-Plug "definition-or-references.nvim", { "tag": "*" }
+Plug "KostkaBrukowa/definition-or-references.nvim", { "tag": "*" }
 -- dev version
-Plug "definition-or-references.nvim"
+Plug "KostkaBrukowa/definition-or-references.nvim"
 ```
 
 </td>
@@ -81,9 +81,9 @@ Plug "definition-or-references.nvim"
 
 ```lua
 -- stable version
-require("lazy").setup({{"definition-or-references.nvim", version = "*"}})
+require("lazy").setup({{"KostkaBrukowa/definition-or-references.nvim", version = "*"}})
 -- dev version
-require("lazy").setup({"definition-or-references.nvim"})
+require("lazy").setup({"KostkaBrukowa/definition-or-references.nvim"})
 ```
 
 </td>
