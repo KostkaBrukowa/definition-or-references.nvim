@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-    > A catch phrase that describes your plugin.
+    Replace `vim.lsp.buf.definition` and `vim.lsp.buf.references` with single command.
 </p>
 
 <div align="center">
@@ -18,13 +18,23 @@ _[GIF version of the showcase video for mobile users](SHOWCASE_GIF_LINK)_
 
 </div>
 
-## ⚡️ Features
+## ⚡️ Description 
 
-> Write short sentences describing your plugin features
+This plugin implements JetBrains like definition and references handling (in JetBrains it's called `declaration or usages`). It combines
+`vim.lsp.buf.definition` and `vim.lsp.buf.references` into single command `require("definition-or-references").definition_or_references`.
 
-- FEATURE 1
-- FEATURE ..
-- FEATURE N
+## ⚡️ How it works?
+
+tldr; When you are NOT on the definition of the item, then this command puts your cursor on the definition,
+      and when you are on the definition it shows you all the item's references.
+
+In detail:
+This is exact way that this plugin works:
+1. At the same time starts two lsp requests `textDocument/definition` and `textDocument/references`.
+2. At first it checks `textDocument/definition` result and if:
+    a) your cursor is on the definition of the item then it shows you all the item's references
+    b) your cursor is not on the definition then it cancells `textDocument/references` request and moves cursor to the definition of an item
+3. When handling item's references if there is only one reference it also moves your cursor to that only rerefence.
 
 ## 📋 Installation
 
@@ -94,11 +104,13 @@ require("lazy").setup({"KostkaBrukowa/definition-or-references.nvim"})
 
 ## ☄ Getting started
 
-> Describe how to use the plugin the simplest way
+The way to use the plugin is to just make a keymap that calls the plugin e.g.
+```lua
+vim.keymap.set("n", "gd", require("definition-or-references").definition_or_references, { silent = true })
+```
+and whenever you call this keymap the logic described above will fire.
 
 ## ⚙ Configuration
-
-> The configuration list sometimes become cumbersome, making it folded by default reduce the noise of the README file.
 
 <details>
 <summary>Click to unfold the full list of options with their default values</summary>
@@ -107,17 +119,22 @@ require("lazy").setup({"KostkaBrukowa/definition-or-references.nvim"})
 
 ```lua
 require("definition-or-references").setup({
-    -- you can copy the full list from lua/definition-or-references/config.lua
+  -- Prints useful logs about what event are triggered, and reasons actions are executed.
+  debug = false,
+
+  -- Callback that gets called just before sending first request
+  before_start_callback = function() end,
+
+  -- Callback that gets called just after opening entry and settig cursor position
+  after_jump_callback = function(_) end,
+
+  -- Callback that gets called with all of the references lsp result. You can do whatever you want
+  -- with this data e.g. display it in the `telescope` window
+  on_references_result = nil,
 })
 ```
 
 </details>
-
-## 🧰 Commands
-
-|   Command   |         Description        |
-|-------------|----------------------------|
-|  `:Toggle`  |     Enables the plugin.    |
 
 ## ⌨ Contributing
 
@@ -126,7 +143,3 @@ PRs and issues are always welcome. Make sure to provide as much context as possi
 ## 🗞 Wiki
 
 You can find guides and showcase of the plugin on [the Wiki](https://github.com/jaroslaw.glegola/definition-or-references.nvim/wiki)
-
-## 🎭 Motivations
-
-> If alternatives of your plugin exist, you can provide some pros/cons of using yours over the others.
