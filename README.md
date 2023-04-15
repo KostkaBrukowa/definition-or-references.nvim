@@ -131,6 +131,7 @@ require("definition-or-references").setup({
 
   -- Callback that gets called with all of the references lsp result. You can do whatever you want
   -- with this data e.g. display it in the `telescope` window
+  -- For example see Wiki pages
   on_references_result = nil,
 })
 ```
