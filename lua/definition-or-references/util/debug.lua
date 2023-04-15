@@ -7,7 +7,7 @@ local D = {}
 ---@param ... any: the arguments of the formatted string.
 ---@private
 function D.log(scope, str, ...)
-    if _G.YourPluginName.config ~= nil and not _G.YourPluginName.config.debug then
+    if _G.DefinitionOrReferences.config ~= nil and not _G.DefinitionOrReferences.config.debug then
         return
     end
 
@@ -20,7 +20,7 @@ function D.log(scope, str, ...)
 
     print(
         string.format(
-            "[your-plugin-name:%s %s in %s] > %s",
+            "[definition-or-references:%s %s in %s] > %s",
             os.date("%H:%M:%S"),
             line,
             scope,
@@ -35,7 +35,7 @@ end
 ---@param indent number?: the default indent value, starts at 0.
 ---@private
 function D.tprint(table, indent)
-    if _G.YourPluginName.config ~= nil and not _G.YourPluginName.config.debug then
+    if _G.DefinitionOrReferences.config ~= nil and not _G.DefinitionOrReferences.config.debug then
         return
     end
 

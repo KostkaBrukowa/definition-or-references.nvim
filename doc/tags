@@ -1,2 +1,2 @@
-YourPluginName.options	neovim-plugin-boilerplate.txt	/*YourPluginName.options*
-YourPluginName.setup()	neovim-plugin-boilerplate.txt	/*YourPluginName.setup()*
+DefinitionOrReferences.options	definition-or-references.txt	/*DefinitionOrReferences.options*
+DefinitionOrReferences.setup()	definition-or-references.txt	/*DefinitionOrReferences.setup()*
