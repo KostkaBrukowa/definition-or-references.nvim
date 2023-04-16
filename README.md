@@ -57,8 +57,6 @@ This is exact way that this plugin works:
 <td>
 
 ```lua
--- stable version
-use {"KostkaBrukowa/definition-or-references.nvim", tag = "*" }
 -- dev version
 use {"KostkaBrukowa/definition-or-references.nvim"}
 ```
@@ -74,8 +72,6 @@ use {"KostkaBrukowa/definition-or-references.nvim"}
 <td>
 
 ```lua
--- stable version
-Plug "KostkaBrukowa/definition-or-references.nvim", { "tag": "*" }
 -- dev version
 Plug "KostkaBrukowa/definition-or-references.nvim"
 ```
@@ -91,8 +87,6 @@ Plug "KostkaBrukowa/definition-or-references.nvim"
 <td>
 
 ```lua
--- stable version
-require("lazy").setup({{"KostkaBrukowa/definition-or-references.nvim", version = "*"}})
 -- dev version
 require("lazy").setup({"KostkaBrukowa/definition-or-references.nvim"})
 ```

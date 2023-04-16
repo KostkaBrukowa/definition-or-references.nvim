@@ -26,7 +26,7 @@ local function handle_references_response(context)
     return on_references_result(result_entries)
   end
 
-  default_lsp_handlers["textDocument/references"](nil, result_entries, context)
+  vim.lsp.handlers["textDocument/references"](nil, result_entries, context)
 end
 
 local function send_references_request()
