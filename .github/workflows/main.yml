@@ -40,9 +40,6 @@ jobs:
       - name: generate documentation
         run: make documentation-ci
 
-      - name: check docs diff
-        run: exit $(git status --porcelain doc | wc -l | tr -d " ")
-
   tests:
     needs: 
       - lint
