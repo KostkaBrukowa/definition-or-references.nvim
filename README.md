@@ -7,14 +7,8 @@
 </p>
 
 <div align="center">
-    https://user-images.githubusercontent.com/35625949/232309497-80054f3c-a6a8-431d-81e0-7036e532e425.mov
-</div>
 
-<div align="center">
-
-> Videos don't work on GitHub mobile, so a GIF alternative can help users.
-
-_[GIF version of the showcase video for mobile users](https://user-images.githubusercontent.com/35625949/232309658-ca59b473-1e8a-4551-86e4-d3fbe55f6bf6.gif)_
+![Preview](https://user-images.githubusercontent.com/35625949/232309658-ca59b473-1e8a-4551-86e4-d3fbe55f6bf6.gif)
 </div>
 
 ## ⚡️ Description 
