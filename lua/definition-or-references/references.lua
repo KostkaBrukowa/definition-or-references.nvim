@@ -1,4 +1,3 @@
-local default_lsp_handlers = require("vim.lsp.handlers")
 local methods = require("definition-or-references.methods_state")
 local utils = require("definition-or-references.utils")
 local log = require("definition-or-references.util.debug")
@@ -16,7 +15,8 @@ local function handle_references_response(context)
   end
 
   if #result_entries == 1 then
-    utils.open_location_in_current_window(result_entries[1])
+    vim.notify("Only one reference found")
+    utils.open_result_in_current_window(result_entries[1])
     return
   end
 
