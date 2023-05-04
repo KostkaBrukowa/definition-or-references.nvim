@@ -21,6 +21,8 @@ local function definitions()
         return
       end
 
+      methods.definitions.result = result
+
       -- I assume that the we care about only one (first) definition
       if result and #result > 0 then
         local first_definition = result[1]

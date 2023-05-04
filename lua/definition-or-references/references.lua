@@ -3,20 +3,43 @@ local utils = require("definition-or-references.utils")
 local log = require("definition-or-references.util.debug")
 local config = require("definition-or-references.config")
 
+local function exclude_same_line_entries(result)
+  local current_file_uri = vim.uri_from_bufnr(0)
+  local current_line = vim.api.nvim_win_get_cursor(0)[1]
+
+  local function is_entry_on_the_same_line(entry)
+    -- if entry is on the same line
+    if entry.uri == current_file_uri and entry.range.start.line == current_line - 1 then
+      return false
+    end
+    return true
+  end
+
+  return vim.tbl_filter(is_entry_on_the_same_line, result)
+end
+
 local function handle_references_response(context)
   log.trace("handle_references_response", "handle_references_response")
   local result_entries = methods.references.result
 
-  methods.clear_references()
+  local filtered_entries = exclude_same_line_entries(result_entries)
 
-  if not result_entries or vim.tbl_isempty(result_entries) then
-    vim.notify("No references found")
+  if not filtered_entries or vim.tbl_isempty(filtered_entries) then
+    if methods.definitions.result and #methods.definitions.result > 0 then
+      vim.notify("Cursor on definition and no references found")
+    elseif not methods.definitions.result or #methods.definitions.result == 0 then
+      vim.notify("No definition or references found")
+    end
     return
   end
 
-  if #result_entries == 1 then
-    vim.notify("Only one reference found")
-    utils.open_result_in_current_window(result_entries[1])
+  if #filtered_entries == 1 then
+    if methods.definitions.result and #methods.definitions.result > 0 then
+      vim.notify("Curson on definition and only one reference found")
+    elseif not methods.definitions.result or #methods.definitions.result == 0 then
+      vim.notify("No definition but single reference found")
+    end
+    utils.open_result_in_current_window(filtered_entries[1])
     return
   end
 
