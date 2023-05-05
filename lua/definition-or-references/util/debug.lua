@@ -7,7 +7,7 @@ local D = {}
 ---@param ... any: the arguments of the formatted string.
 ---@private
 function D.log(scope, str, ...)
-  if _G.DefinitionOrReferences.config ~= nil and not _G.DefinitionOrReferences.config.debug then
+  if _G.DefinitionOrReferences.config == nil or not _G.DefinitionOrReferences.config.debug then
     return
   end
 
