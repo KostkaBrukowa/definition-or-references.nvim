@@ -39,16 +39,6 @@ function M.get_filename_fn()
   end
 end
 
-function M.open_result_in_current_window(result)
-  local uri = result.uri or result.targetUri
-  local range = result.range or result.targetRange
-
-  vim.api.nvim_win_set_buf(0, vim.uri_to_bufnr(uri))
-  vim.api.nvim_win_set_cursor(0, { range.start.line + 1, range.start.character })
-
-  config.get_config().after_jump_callback(result)
-end
-
 function M.make_params()
   local params = vim.lsp.util.make_position_params(0)
 
