@@ -65,7 +65,25 @@ The way to use the plugin is to just make a keymap that calls the plugin e.g.
 ```lua
 vim.keymap.set("n", "gd", require("definition-or-references").definition_or_references, { silent = true })
 ```
-and whenever you call this keymap the logic described above will fire.
+
+or you can add this on CTRL+click as it is in some other editors:
+```lua
+vim.keymap.set("n", "<C-LeftMouse>", function()
+  -- Simulate click to place cursor on correct position
+  vim.api.nvim_feedkeys(
+    vim.api.nvim_replace_termcodes("<LeftMouse>", false, false, true),
+    "in",
+    false
+  )
+
+  -- defer to let nvim refresh to get correct position
+  vim.defer_fn(function()
+    require("definition-or-references").definition_or_references()
+  end, 0)
+end)
+```
+
+or whenever you call this keymap the logic described above will fire.
 
 ## ⚙ Configuration
 
