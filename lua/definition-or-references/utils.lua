@@ -42,7 +42,7 @@ end
 function M.make_params()
   local params = vim.lsp.util.make_position_params(0)
 
-  params.context = { includeDeclaration = true }
+  params.context = { includeDeclaration = false }
 
   return params
 end
