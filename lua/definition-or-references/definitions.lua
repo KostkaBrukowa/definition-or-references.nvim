@@ -2,6 +2,7 @@ local log = require("definition-or-references.util.debug")
 local methods = require("definition-or-references.methods_state")
 local util = require("definition-or-references.utils")
 local references = require("definition-or-references.references")
+local config = require("definition-or-references.config")
 
 local function definitions()
   local current_cursor = vim.api.nvim_win_get_cursor(0)
@@ -17,7 +18,9 @@ local function definitions()
       methods.definitions.is_pending = false
 
       if err then
-        vim.notify(err.message, vim.log.levels.ERROR)
+        if config.get_notify_option("errors") then
+          vim.notify(err.message, vim.log.levels.ERROR)
+        end
         return
       end
 

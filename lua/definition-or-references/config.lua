@@ -17,6 +17,16 @@ DefinitionOrReferences.options = {
   -- Callback that gets called with all of the references lsp result. You can do whatever you want
   -- with this data e.g. display it in the `telescope` window
   on_references_result = nil,
+
+  -- Specifies when should the notify be called (if at all)
+  -- If you want to disable notify completely set it to `false`
+  notify_options = {
+    errors = true,
+    on_definition_no_reference = true,
+    no_definition_no_reference = true,
+    on_definition_one_reference = true,
+    no_definition_one_reference = true,
+  },
 }
 
 ---@param options table Module config table. See |DefinitionOrReferences.options|.
@@ -35,6 +45,19 @@ end
 --- Get config value
 function DefinitionOrReferences.get_config()
   return DefinitionOrReferences.options
+end
+
+--- Get config value
+function DefinitionOrReferences.get_notify_option(option)
+  if not option then
+    return nil
+  end
+
+  if not DefinitionOrReferences.options.notify_options then
+    return nil
+  end
+
+  return DefinitionOrReferences.options.notify_options[option]
 end
 
 return DefinitionOrReferences

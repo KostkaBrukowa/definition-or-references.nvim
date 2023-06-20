@@ -104,6 +104,16 @@ require("definition-or-references").setup({
   -- with this data e.g. display it in the `telescope` window
   -- For example see Wiki pages
   on_references_result = nil,
+
+  -- Specifies when should the notify be called (if at all)
+  -- If you want to disable notify completely set it to `false`: `notify_options = false`
+  notify_options = {
+    errors = true,
+    on_definition_no_reference = true,
+    no_definition_no_reference = true,
+    on_definition_one_reference = true,
+    no_definition_one_reference = true,
+  },
 })
 ```
 
