@@ -50,7 +50,27 @@ local function handle_references_response(context)
     return on_references_result(result_entries)
   end
 
-  vim.lsp.handlers[methods.references.name](nil, result_entries, context)
+  local handler = vim.lsp.handlers[methods.references.name]
+
+  if not handler then
+    handler = function(_, result, ctx)
+      local util = vim.lsp.util
+      if not util.locations_to_items and util.locations_to_items_via_item_kind then
+        util.locations_to_items = util.locations_to_items_via_item_kind
+      end
+      local client = vim.lsp.get_client_by_id(ctx.client_id)
+      local items =
+        util.locations_to_items(result or {}, client and client.offset_encoding or "utf-16")
+      if not vim.tbl_isempty(items) then
+        vim.fn.setqflist({}, " ", { title = "References", items = items })
+        vim.cmd("copen")
+      else
+        vim.notify("No references found", vim.log.levels.INFO)
+      end
+    end
+  end
+
+  handler(nil, result_entries, context)
 end
 
 local function send_references_request()
