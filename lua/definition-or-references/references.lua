@@ -35,10 +35,10 @@ local function handle_references_response(context)
     then
       vim.notify("No definition but single reference found")
     end
-    vim.lsp.util.jump_to_location(
+    vim.lsp.util.show_document(
       result_entries[1],
       vim.lsp.get_client_by_id(context.client_id).offset_encoding,
-      true
+      { reuse_win = true, focus = true }
     )
 
     return
