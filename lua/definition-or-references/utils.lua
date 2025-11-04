@@ -40,7 +40,8 @@ function M.get_filename_fn()
 end
 
 function M.make_params()
-  local params = vim.lsp.util.make_position_params(0)
+  local clients = vim.lsp.get_clients()
+  local params = vim.lsp.util.make_position_params(0, clients[1].offset_encoding)
 
   params.context = { includeDeclaration = false }
 
