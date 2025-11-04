@@ -33,7 +33,7 @@ local function definitions()
         if util.cursor_not_on_result(current_bufnr, current_cursor, first_definition) then
           methods.clear_references()
           log.trace("definitions", "Current cursor not on result")
-          vim.lsp.util.show_location(
+          vim.lsp.util.show_document(
             first_definition,
             vim.lsp.get_client_by_id(context.client_id).offset_encoding,
             { focus = true }
